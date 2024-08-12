@@ -1,2 +1,7 @@
-Nunca use button, sempre touchboul opacity.
+*Nunca use button, sempre touchboul opacity.
 Só node me deu tanta raiva, raiva não, perda de sanidade momentânea.
+
+*ok,ok quando criar um componente:
+- coloca o nome da função com nome maiúsculo
+-coloca o nome da funcão com o mesmo nome do arquivo
+-e quando for chamar siga a estrutura (<Exemplo/>)

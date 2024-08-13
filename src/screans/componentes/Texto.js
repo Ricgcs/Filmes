@@ -4,10 +4,12 @@ import { width } from '../constants/medidas';
 import { height } from '../constants/medidas';
 import { TouchableOpacity } from 'react-native-web';
 
-export default function Texto(props) { // Melhor usar PascalCase para nomes de componentes
-    return (
-      <View>
-        <Text>{props.filmes}</Text>
-        </View>
+export default function Texto(props) {
+   return (
+    <View>
+      <Text>
+          {props.filmes}
+      </Text>
+    </View>
     );
 }

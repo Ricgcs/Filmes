@@ -7,8 +7,7 @@ import Sub from './Sub';
 import { useState } from 'react';
 
 
-export default function App() {
-
+export default function Cadastro() {
 const [nome, setNome] = useState(null);
 
   return (
@@ -17,13 +16,13 @@ const [nome, setNome] = useState(null);
         <TouchableOpacity style = {styles.menu}>
    
         </TouchableOpacity> 
-        <Text style={styles.titulo}>Filmes</Text>
+        <Text style={styles.titulo}>funciono????????</Text>
 
         <StatusBar style="auto" />
       </View>
       <View style={styles.subtitle}>
 <Sub nome="Filmes"/>
-<Sub nome="Cadastro" va="Cadastro"/>
+<Sub nome="Cadastro"/>
 <Sub nome="Pesquisa"/>
       </View>
 

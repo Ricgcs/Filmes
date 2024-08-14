@@ -1,78 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { Dimensions } from "react-native";
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
-import { width, height } from './src/screans/constants/medidas';
-import Texto from './src/screans/componentes/Texto';
-import Sub from './Sub';
-import { useState } from 'react';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import App from "./App";
+import Cadastro from "./cadastro";
+import novo from "./novo";
 
+const Stack = createNativeStackNavigator(); 
 
-export default function App() {
-
-const [nome, setNome] = useState(null);
-
+export default function Rotas() {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity style = {styles.menu}>
-   
-        </TouchableOpacity> 
-        <Text style={styles.titulo}>Filmes</Text>
-
-        <StatusBar style="auto" />
-      </View>
-      <View style={styles.subtitle}>
-<Sub nome="Filmes"/>
-<Sub nome="Cadastro" va="Cadastro"/>
-<Sub nome="Pesquisa"/>
-      </View>
-
-    <TextInput
-   onChangeText = {(teste)=>setNome(teste)} 
-    />
-    <Text>{nome}</Text>
-      </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Novo" component={novo} />
+        <Stack.Screen name="Cadastro" component={Cadastro} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#191970',
- 
-  },
-  header: {
-  flexDirection:'row',
-    backgroundColor:'#000080',
-    height:height*0.08,
-   alignItems:"center",
-   justifyContent:"center",
-
-  },
- menu:{
-  backgroundColor:'	#4B0082',
-  width:width*0.15,
-  height:height*0.08,
-  alignItems:'center',
-  justifyContent:'center',
-  color:'white',
- },
-
- titulo:{
-color:"white",
-fontSize:height*0.05,
-marginLeft:"-10%",
- },
-
- imagem_menu:{
-width:width*0.12,
-height:height*0.06,
- },
-
- subtitle:{
-  height:height*0.05,
-  width:width,
-  flexDirection:"row",
-  justifyContent:"space-around"
- }
-});

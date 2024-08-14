@@ -1,55 +1,3 @@
-*Nunca use button, sempre touchboul opacity.
-Só node me deu tanta raiva, raiva não, perda de sanidade momentânea.
-
-*ok,ok quando criar um componente:
-- coloca o nome da função com nome maiúsculo
--coloca o nome da funcão com o mesmo nome do arquivo
--e quando for chamar siga a estrutura (<Exemplo/>)
-
-
-pra mudar o repositório:  git remote set-url e o nome :)
-
-
--img:
-   <Image
-      source={require('rota')}
-      style={styles.imagem_menu}
-      />
-
-adendo: initialRouteName="App" screenOptions={{ headerShown: false }}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import { StatusBar } from 'expo-status-bar';
 import { Dimensions } from "react-native";
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
@@ -59,7 +7,7 @@ import Sub from './Sub';
 import { useState } from 'react';
 
 
-export default function App() {
+export default function novo() {
 
 const [nome, setNome] = useState(null);
 
@@ -69,25 +17,31 @@ const [nome, setNome] = useState(null);
         <TouchableOpacity style = {styles.menu}>
    
         </TouchableOpacity> 
-        <Text style={styles.titulo}>Filmes</Text>
+        <Text style={styles.titulo}>funciono????????</Text>
 
         <StatusBar style="auto" />
       </View>
       <View style={styles.subtitle}>
 <Sub nome="Filmes"/>
-<Sub nome="Cadastro" va="Cadastro"/>
+<Sub nome="Cadastro"/>
 <Sub nome="Pesquisa"/>
       </View>
+<View style={styles.teste}>
+<TextInput placeholder="teste"/>
 
-    <TextInput
-   onChangeText = {(teste)=>setNome(teste)} 
-    />
-    <Text>{nome}</Text>
+</View>
+ 
+
+
       </View>
   );
 }
 
 const styles = StyleSheet.create({
+teste:{
+
+},
+
   container: {
     flex: 1,
     backgroundColor: '#191970',

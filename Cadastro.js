@@ -7,7 +7,9 @@ import Sub from './Sub';
 import { useState } from 'react';
 
 
-export default function Cadastro() {
+
+export default function cadastro() {
+
 const [nome, setNome] = useState(null);
 
   return (

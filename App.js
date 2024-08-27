@@ -20,6 +20,11 @@ function HomeScreen({ navigation }) {
   const [releaseYear, setReleaseYear] = useState('');
   const [image, setImage] = useState(null);
   const [results, setResults] = useState([]);
+  
+  // Estados para rastrear o foco dos TextInput
+  const [isFilmNameFocused, setFilmNameFocused] = useState(false);
+  const [isDurationFocused, setDurationFocused] = useState(false);
+  const [isReleaseYearFocused, setReleaseYearFocused] = useState(false);
 
   const options = [
     { id: '1', label: 'Romance' },
@@ -76,31 +81,58 @@ function HomeScreen({ navigation }) {
   };
 
   return (
-    <View style={{ flex: 1, padding: 20 }}>
+    <View style={styles.container}>
       <Title /> {/* Componente de título adicionado */}
       <Text style={styles.text_input}>Nome do Filme</Text>
       <TextInput
-        style={styles.input_dois}
+        style={[
+          styles.input_dois,
+          {
+            backgroundColor: isFilmNameFocused ? 'white' : 'transparent',
+            color: isFilmNameFocused ? 'black' : 'white',
+          },
+        ]}
         placeholder="Nome do filme"
+        placeholderTextColor="white"
         value={filmName}
         onChangeText={setFilmName}
+        onFocus={() => setFilmNameFocused(true)}
+        onBlur={() => setFilmNameFocused(false)}
       />
 
       <Text style={styles.text_input}>Tempo de Duração</Text>
       <TextInput
-        style={styles.input_dois}
+        style={[
+          styles.input_dois,
+          {
+            backgroundColor: isDurationFocused ? 'white' : 'transparent',
+            color: isDurationFocused ? 'black' : 'white',
+          },
+        ]}
         keyboardType="numeric"
         placeholder="Tempo de duração"
+        placeholderTextColor="white"
         value={duration}
         onChangeText={setDuration}
+        onFocus={() => setDurationFocused(true)}
+        onBlur={() => setDurationFocused(false)}
       />
 
       <Text style={styles.text_input}>Ano de Lançamento</Text>
       <TextInput
-        style={styles.input_dois}
+        style={[
+          styles.input_dois,
+          {
+            backgroundColor: isReleaseYearFocused ? 'white' : 'transparent',
+            color: isReleaseYearFocused ? 'black' : 'white',
+          },
+        ]}
         placeholder="Ano de lançamento"
+        placeholderTextColor="white"
         value={releaseYear}
         onChangeText={setReleaseYear}
+        onFocus={() => setReleaseYearFocused(true)}
+        onBlur={() => setReleaseYearFocused(false)}
       />
 
       <Text style={styles.text_input}>Selecionar Gênero</Text>
@@ -109,6 +141,7 @@ function HomeScreen({ navigation }) {
         onPress={setSelectedOption}
         selectedId={selectedOption}
         layout="row"
+        labelStyle={styles.radioLabel} // Estilo adicionado
       />
 
       <TouchableOpacity style={styles.button} onPress={pickImage}>
@@ -142,12 +175,14 @@ function ResultsScreen({ navigation, route }) {
   ];
 
   return (
-    <ScrollView style={{ flex: 1, padding: 20 }}>
+    <ScrollView style={styles.container}>
       <Title /> {/* Componente de título adicionado */}
       {options.map((option) => {
         const filteredResults = results.filter(result => result.genre === option.label);
         return (
-          <View key={option.id}>
+          <View key={option.id} style={styles.sectionContainer}>
+            {/* Faixa horizontal */}
+            <View style={styles.sectionBar} />
             <Text style={styles.genre_title}>{option.label}</Text>
             <FlatList
               data={filteredResults}
@@ -175,7 +210,7 @@ function FilmDetailsScreen({ route }) {
   const { film } = route.params;
 
   return (
-    <View style={{ flex: 1, padding: 20 }}>
+    <View style={styles.container}>
       <Title /> {/* Componente de título adicionado */}
       <Text style={styles.genre_title}>Detalhes do Filme</Text>
       <Image source={{ uri: film.image }} style={styles.resultImage} />
@@ -209,6 +244,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginVertical: 20,
+    color: 'white',
   },
   
   igual: {
@@ -222,7 +258,7 @@ const styles = StyleSheet.create({
   },
 
   text_input: {
-    color: "black",
+    color: "white",
     textAlign: "center",
     fontWeight: 'bold',
     fontSize: 16,
@@ -232,10 +268,12 @@ const styles = StyleSheet.create({
   input_dois: {
     height: height * 0.05,
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: 'white',
     width: width * 0.9,
     textAlign: "center",
     borderRadius: 15,
+    color: 'white',
+    paddingHorizontal: 10, // Adiciona preenchimento interno
   },
 
   text_button: {
@@ -244,9 +282,8 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    flexDirection: "row",
-    justifyContent: "space-between",
+    backgroundColor: '#000', // Alterado para preto
+    padding: 20,
   },
 
   button: {
@@ -255,7 +292,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    backgroundColor: "blue",
+    backgroundColor: "red", // Alterado para vermelho
     margin: 5,
   },
 
@@ -263,12 +300,14 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 16,
     height: 44,
+    color: 'white',
   },
 
   genre_title: {
     fontSize: 18,
     fontWeight: 'bold',
     marginVertical: 10,
+    color: 'white',
   },
 
   empty_message: {
@@ -292,5 +331,19 @@ const styles = StyleSheet.create({
 
   flatListContent: {
     paddingVertical: 10,
+  },
+
+  radioLabel: {
+    color: 'white', // Cor do texto do RadioGroup
+  },
+
+  sectionContainer: {
+    marginVertical: 20,
+  },
+
+  sectionBar: {
+    height: 4,
+    backgroundColor: 'gray',
+    marginVertical: 10,
   },
 });
